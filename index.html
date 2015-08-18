@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body></body>
+<script>
+    //1、字符串反转，如将“123456789”变成“987654321”
+    //先将字符串转换为数组split()，利用数组的反转函数reverse()，再利用join()转换为字符串
+    //    var str='123456789';
+    //    str = str.split('').reverse().join('');
+    //    alert(str)
+
+
+    //2、将数字12345678转化成RMB格式
+    //    先将数字转换成字符，str = str +'',利用反转函数，每3个字符加一个','最后一位不加，reverse()是自定义反转函数，最后再反转回去。
+    //    var str='1234556';
+    //    var tmp = '';
+    //    for(var i=1;i<=str.length;i++){
+    //        tmp +=str[i-1];
+    //        if(i%3==0 && i!=str.length){
+    //            tmp +=',';
+    //        }
+    //    }
+    //    alert(tmp);
+
+
+    //3、生成5个不同的随机数
+    //5个不同的数，每生成一次就和前面的所有数字相比较，如果有相同的就放弃当前生成的数
+    //    var num=[];
+    //    for(var i=0;i<5;i++){
+    //        num[i]=Math.floor(Math.random()*10)+1;  //范围是【1,10】
+    //        for(var j=0;j<i;j++){
+    //            if(num[i]==num[j]){
+    //                i--;
+    //            }
+    //        }
+    //    }
+    //    alert(num)
+
+
+    //4、去掉数组中重复的数字
+    //    每遍历一次就和之前的所有做比较，不相等则放入新的数组中
+    //    方法一：原型
+    //    Array.prototype.unique = function(){
+    //        var len = this.length,
+    //        newArr = [],
+    //        flag=1;
+    //        for(var i=0;i<len;i++,flag=1){
+    //            for(var j=0;j<i;j++){
+    //                if(this[i]==this[j]){
+    //                    flag=0;
+    //                }
+    //            }
+    //            flag?newArr.push(this[i]):'';
+    //        }
+    //        return newArr;
+    //    };
+
+    //    var num =[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,5,1,2];
+    //    alert(num.unique());
+
+    //    方法二：
+    //    (function(arr){
+    //        var len = arr.length;
+    //        var newArr=[];
+    //        var flag;
+    //        for(var i=0;i<len;i+=1,flag=1){
+    //            for(var j=0;j<i;j++){
+    //                if(arr[i]==arr[j]){
+    //                    flag=0;
+    //                }
+    //            }
+    //            flag?newArr.push(arr[i]):'';
+    //        }
+    //        alert(newArr)
+    //    })([1,2,3,5,5,6,7,88,99,5,6,4])
+
+
+    //5、阶乘函数
+    //Number.prototype.N=function(){
+    //    var re=1;
+    //    for(var i=1;i<=this;i++){
+    //        re*=i;
+    //    };
+    //    return re;
+    //};
+    //    var num = 6;
+    //    alert(num.N());
+
+    //
+    //6、window.location.search()返回的是什么
+    //    查询（参数）部分，除了给动态语言赋值以外，我们同样可以给静态页面，并使用javascript来获得相应得参数值，返回值：？ver=1.0&id=timlq  也就是？后面的值
+
+
+    //7、window.location.hash 返回的是什么
+    //    锚点，返回值#love
+
+
+    //8、window.location.reload()作用     刷新当前页面
+
+
+    //9、阻止冒泡函数
+    //    function stopPropagation(e){
+    //        e = e||window.event;
+    //        if(e.stopPropagation){   //w3c阻止冒泡方法
+    //            e.stopPropagation();
+    //        }else{
+    //            e.cancelBubble = true;  //IE阻止冒泡方法
+    //        }
+    //    }
+    //
+    //    document.getElementById(id).onclick = function(e){
+    //        stopPropagation(e)
+    //    }
+
+
+    //10、什么是闭包，写一个简单闭包
+    //    我的理解是，闭包就是能够读取其他函数内部变量的函数，在本质上，闭包就是将函数内部和函数外部链接起来的一座桥
+    //    function outer(){
+    //        var num = 1;
+    //        function inner(){
+    //            var n=5;
+    //            alert(n+num);
+    //        }
+    //        return inner;
+    //    }
+    //    outer()();
+
+
+    //11、javascript中的垃圾回收机制
+    //    在javascript中，如果一个对象不再被引用，那么这个对象就会被回收。如果两个对象相互引用，而不再被第三者所引用，那么这两个互相引用的对象也会被回收。因为函数a被b引用，b又被a外的c引用，这就是为什么函数a执行后不会被回收的原因
+
+
+    // 12、存在XMLHttpRequest的几个状态
+    //    从0到4发生变化  readyState
+    //0（未初始化）对象已建立，但是尚未初始化（尚未调用open）
+    //1(初始化)对象已建立，尚未调用send方法
+    //2（发送数据）send方法已调用，但是当前的状态及HTTP头未知
+    //3（数据传送中）已接收部分数据，因为响应及HTTP头不全，这时通过responseBody和responseText获取部分数据会出现错误。
+    //4（完成）数据接收完毕，此时可以通过responseXml和responseText获取完整的回应数据
+
+
+    //13、看题做答
+    //    function f1(){
+    //        var tmp = 1;
+    //        this.x=3;
+    //        console.log(tmp);   //A
+    //        console.log(this.x);   //B
+    //    }
+    //    var obj = new f1();   //1
+    //    console.log(obj.x);  //2
+    //    console.log(f1());   //3
+    //这道题让我重新认识了对象和函数，首先看代码（1），这里实例话化了 f1这个类。相当于执行了 f1函数。
+    // 所以这个时候 A 会输出 1， 而 B 这个时候的 this 代表的是 实例化的当前对象 obj B 输出 3.。
+    // 代码（2）毋庸置疑会输出 3， 重点 代码（3）首先这里将不再是一个类，它只是一个函数。
+    // 那么 A输出 1， B呢？这里的this 代表的其实就是window对象，那么this.x 就是一个全局变量 相当于在外部 的一个全局变量。
+    // 所以 B 输出 3。最后代码由于f1没有返回值那么一个函数如果没返回值的话，将会返回 underfined ，
+    // 所以答案就是 ： 1， 3， 3， 1， 3， underfined 。
+
+    //14、get和post的区别
+    //    GET请求的数据会附在URL之后，POST把提交的数据则放置在是HTTP包的包体中。
+    //    GET方式提交的数据最多只能是1024字节，理论上POST没有限制，可传较大量的数据
+    //    POST的安全性要比GET的安全性高
+
+
+    //  15、下面输出多少
+    //    var o1 = new Object();
+    //    var o2 = o1;
+    //    o2.name = "CSS";
+    //    console.log(o1.name); //CSS
+
+    //    js中有两种数据类型，分别是：基本数据类型和引用数据类型（object Array）。
+    // 对于保存基本类型值的变量，变量是按值访问的，因为我们操作的是变量实际保存的值。
+    // 对于保存引用类型值的变量，变量是按引用访问的，我们操作的是变量值所引用（指向）的对象。
+
+
+    //16、再来一个
+    //    function changeObjectProperty(o){
+    //        o.siteUrl = "http://www.baidu.com";
+    //        o = new Object();
+    //        o.siteUrl = "https://www.taobao.com"
+    //    }
+    //    var newObject = new Object();
+    //    changeObjectProperty(newObject);
+    //    console.log(newObject.siteUrl);
+
+    // 如果newObject参数是按引用传递的，那么结果应该是"https://www.taobao.com"，但实际结果却仍是"http://www.baidu.com"。
+    // 事实是这样的：在函数内部修改了引用类型值的参数，该参数值的原始引用保持不变。
+    // 我们可以把参数想象成局部变量，当参数被重写时，这个变量引用的就是一个局部变量，局部变量的生存期仅限于函数执行的过程中，函数执行完毕，局部变量即被销毁以释放内存。
+    // 补充：内部环境可以通过作用域链访问所有的外部环境中的变量对象，但外部环境无法访问内部环境。每个环境都可以向上搜索作用域链，以查询变量和函数名，反之向下则不能。）
+
+
+
+    //17、
+    //    var a=6;
+    //    setTimeout(function(){
+    //        var a=666;
+    //        alert(a);  //输出666
+    //    },1000);
+    //    a=66;
+    //    因为var a = 666;定义了局部变量a，并且赋值为666，根据变量作用域链，全局变量处在作用域末端，优先访问了局部变量，从而覆盖了全局变量 。
+
+    //    var a=6;
+    //    setTimeout(function(){
+    //        alert(a);  //输出undefined
+    //        var a=666;
+    //    },1000);
+    //    a=66;
+    //    因为var a = 666;定义了局部变量a，同样覆盖了全局变量，但是在alert(a);之前a并未赋值，所以输出undefined。
+
+    //    var a=6;
+    //    setTimeout(function(){
+    //        alert(a);  //输出undefined
+    //        var a=66;
+    //    },1000);
+    //    a=666;
+    //    alert(a);  //输出666
+    //   注：一切异步处理，声明提前
+
+
+    //18、
+    //    function setN(obj){
+    //        obj.name = "张三";
+    //        obj = new Object();
+    //        obj.name ="李四";
+    //    };
+    //    var per = new Object();
+    //    setN(per);
+    //    alert(per.name);   //张三
+
+
+    //19、js的继承性
+    //    window.color = "red";
+    //    var o = {color:'blue'};
+    //    function sayColor(){
+    //        alert(this.color);
+    //    }
+    //    sayColor();   //red
+    //    sayColor.call(this);  //red   this指向window对象
+    //    sayColor.call(window);  //red
+    //    sayColor.call(o);  //blue
+
+
+
+    //    20、精度问题   js精度不能精确到0.1
+    //    var n = 0.3,m=0.2,a=0.2,b=0.1;
+    //    alert((n-m)==(a-b));   //false
+    //    alert((n-m)==0.1);   //false
+    //    alert((a-b)==0.1);   //true
+
+    //    21、加减运算
+    //    alert('5'+3);   //53  string
+    //    alert('5'+'3');   //53  string
+    //    alert('5'-'3');   //2   number
+    //    alert('5'+3);   //2   number
+
+    //22、map函数
+    //    ['1','2','3'].map(parseInt);
+    //    alert(['1','2','3'].map(parseInt))  //[1,NaN,NaN]
+
+
+    //23、什么是同源策略？
+    //    指： 同协议、端口、域名的安全策略，由王景公司提出来的安全协议！
+
+    //24、call和applay的区别是什么？
+    //    参数形式不同，call(obj, pra, pra)后面是单个参数。applay(obj, [args])后面是数组。
+
+    //25、undefined和undeclared的区别？
+    //   undefined: 是变量声明了，但是没有赋值，在执行时不会报错，输出 undefined.
+    //   undeclared: 变量即没声明又没赋值，执行时报错。 (is not defined).
+
+    //26、IE6下为什么不能定义1px左右的div容器？
+    //    IE6下这个问题是因为默认的行高造成的，解决的方法也有很多，例如：
+    //    overflow:hidden | zoom:0.08 | line-height:1px
+
+    //27、
+    //    function foo(){
+    //        foo.a = function(){alert(1)};
+    //        this.a = function(){alert(2)};
+    //        a = function(){alert(3)};
+    //        var a = function(){alert(4)};
+    //    };
+    //    foo.prototype.a = function(){alert(5)};
+    //    foo.a = function(){alert(6)};
+    //    foo.a(); //6
+    //    var obj = new foo();
+    //    obj.a(); //2
+    //    foo.a(); //1
+
+
+    // 28、
+    //    var a = 5;
+    //    function test(){
+    //        a = 0;
+    //        alert(a);
+    //        alert(this.a); //没有定义 a这个属性
+    //        var a;
+    //        alert(a)
+    //    }
+    //    test(); // 0, 5, 0
+    //    new test(); // 0, undefined, 0 //由于类它自身没有属性a， 所以是undefined
+
+
+    //29、
+    //    new function(s){
+    //        if(!arguments.length||!s) return null;
+    //        if(""==s) return 0;  //字符串为空返回0
+    //        var len=0;
+    //        for(var i=0;i<s.length;i++){
+    //            if(s.charCodeAt(i)>255){   //arCodeAt()得到的是unCode码
+    //                len+=2;  //汉字的unCode码大于 255 bit 就是两个字节
+    //            }else{
+    //                len+=1;
+    //            };
+    //        }
+    //        alert(len);
+    //    }("hello world!");
+
+
+    //30、   var bool = !!2;alert(bool);  //true
+
+
+    //31、声明对象，添加属性，输出属性
+    //    var obj = {
+    //        name:'zp',
+    //        showName:function(){
+    //            alert(this.name);
+    //        }
+    //    };
+    //    obj.showName();
+
+
+    //32、匹配输入的字符，第一个必须是字母或下划线开头，长度5-20
+    //    var reg = /^[a-zA-Z_][a-zA-Z0-9]{5,20}/,
+    //            name1 = 'leipeng',
+    //            name2 = '_0leipeng',
+    //            name3 = '你好leipeng',
+    //            name4 = '_hihhhhhhhhh';
+    //
+    //    alert(reg.test(name1));
+    //    alert(reg.test(name2));
+    //    alert(reg.test(name3));
+    //    alert(reg.test(name4));
+
+
+    //33、数据类型的检查
+    //    function check(str){
+    //        typeof str == 'string'?alert('true'):alert('false');
+    //    }
+    //    check('shdkkdbcnhj')
+
+
+    //34、如何在HTML中添加事件，几种方法？
+    //    1、标签之中直接添加 onclick="fun()";
+    //    2、JS添加 Eobj.onclick = method;
+    //    3、现代事件  IE： obj.attachEvent('onclick', method)； FF: obj.addEventListener('click', method, false);
+
+
+    //35、BOM对象有哪些，列举window对象？
+    //    1、window对象 ，是JS的最顶层对象，其他的BOM对象都是window对象的属性；
+    //    2、document对象，文档对象；
+    //    3、location对象，浏览器当前URL信息；
+    //    4、navigator对象，浏览器本身信息；
+    //    5、screen对象，客户端屏幕信息；
+    //    6、history对象，浏览器访问历史信息；
+
+
+    // 36、请问代码实现 outerHTML       说明：outerHTML其实就是innerHTML再加上本身；
+    //    <div id="outer">
+    //        hello
+    //    </div>
+    //      Object.prototype.outerHTML = function(){
+    //        var innerCon = this.innerHTML, //获得里面的内容
+    //                outerCon = this.appendChild(innerCon); //添加到里面
+    //        alert(outerCon);
+    //    };
+    //    function $(id){
+    //        return document.getElementById(id);
+    //    }
+    //    alert($('outer').innerHTML);
+    //    alert($('outer').outerHTML);
+
+
+    //37、JS中的简单继承 call方法！
+    //定一个父母类，注意：类名都是首字母大写的哦！
+    //    function Parent(name, money){
+    //        this.name = name;
+    //        this.money = money;
+    //        this.info = function(){
+    //            alert('姓名： '+this.name+' 钱： '+ this.money);
+    //        }
+    //    }
+    //定义孩子类
+    //    function Children(name){
+    //        Parent.call(this, name); //继承 姓名属性，不要钱。
+    //        this.info = function(){
+    //            alert('姓名： '+this.name);
+    //        }
+    //    }
+    //实例化类
+    //    var per = new Parent('parent', 800000000000);
+    //    var chi = new Children('child');
+    //    per.info();
+    //    chi.info();
+
+
+    //38、写出HTML5的文档声明方式
+    //<DOCYPE html>
+
+
+    //39、HTML5和CSS3的新标签
+    //    HTML5： nav, footer, header, section, hgroup, video, time, canvas, audio...;
+    //    CSS3: RGBA, opacity, text-shadow, box-shadow, border-radius, border-image, border-color, transform...;
+
+
+    //40、自己对标签语义化的理解
+    //    在我看来，语义化就是比如说一个段落， 那么我们就应该用 <p>标签来修饰，标题就应该用 <h?>标签等。符合文档语义的标签 ,加粗用<strong>等 。
+
+
+    //   41、bind(), live(), delegate()的区别
+    //    bind： 绑定事件，对新添加的事件不起作用，方法用于将一个处理程序附加到每个匹配元素的事件上并返回jQuery对象。
+    //    live： 方法将一个事件处理程序附加到与当前选择器匹配的所有元素（包含现有的或将来添加的）的指定事件上并返回jQuery对象。
+    //    delegate： 方法基于一组特定的根元素将处理程序附加到匹配选择器的所有元素（现有的或将来的）的一个或多个事件上。
+
+
+    //42、typeof 的返回类型有哪些？
+    //    alert(typeof [1, 2]); //object
+    //    alert(typeof 'leipeng'); //string
+    //    var i = true;
+    //    alert(typeof i); //boolean
+    //    alert(typeof 1); //number
+    //    var a;
+    //    alert(typeof a); //undefined
+    //    function a(){;};
+    //    alert(typeof a) //function
+
+
+    //43、简述link和import的区别？
+    //    区别1：link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+    //    区别2：link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+    //    区别3：link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+    //    区别4：link支持使用Javascript控制DOM去改变样式；而@import不支持。
+
+
+    //44、window.onload 和 document.ready的区别？
+    //    load要等到图片和包含的文件都加在进来之后执行；
+    //    ready是不包含图片和非文字文件的文档结构准备好就执行；
+
+
+    //45、 解析URL成一个对象？
+    //    String.prototype.urlQueryString = function(){
+    //        var url = this.split('?')[1].split('&'),
+    //                len = url.length;
+    //
+    //        this.url = {};
+    //        for(var i = 0; i < len; i += 1){
+    //            var cell = url[i].split('='),
+    //                    key = cell[0],
+    //                    val = cell[1];
+    //            this.url[''+key+''] = val;
+    //        }
+    //        return this.url;
+    //    };
+    //    var url = '?name=12&age=23';
+    //    console.log(url.urlQueryString().age);
+
+</script>
+</html>
